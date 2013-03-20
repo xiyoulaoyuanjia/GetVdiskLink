@@ -46,37 +46,45 @@ except ImportError:
 import time
 import hmac, hashlib
 import urllib, urllib2
+import os
+
 
 _HTTP_GET = 1
 _HTTP_POST = 2
+_HTTP_UPLOAD=3
 
 def _get_json_request(req):
-    resp = urllib2.urlopen(req)
-    body = resp.read()
-    r = json.loads(body)
-
+    r = json.loads(req)
     if r['err_code'] <> 0:
         raise APIError(r['err_code'], getattr(r, 'err_msg', ''))
     return r
 
 def _http_call(client, url, method, authorization, **kw):
-    '''
-    send an http request and expect to return a json object if no error.
-    '''
-    url_ext = '?token=' + client.access_token
     params = {}
+    uploadPa=''
+#	    send an http request and expect to return a json object if no error.
+    url_ext = '?token=' + client.access_token
     params['token'] = client.access_token
-    for k, v in kw.iteritems():
-        params[k] = v
-        url_ext += ('&%s=%s' % (k, v))
-
-
-#    print url+url_ext
     http_url = (method == _HTTP_GET) and ('%s%s' %(url ,url_ext)) or ('%s' % (url))
-    params = (method == _HTTP_GET) and None or params
-    req = (method == _HTTP_GET) and urllib2.Request(http_url) or urllib2.Request(http_url, urllib.urlencode(params))
-
-    return _get_json_request(req)
+    for k, v in kw.iteritems():
+        if method == _HTTP_UPLOAD and k == 'file':
+		    uploadPa+=" -F "+k+"=@"+str(v)
+        elif method==_HTTP_UPLOAD:
+		    uploadPa+=" -F "+k+"="+str(v)
+        else:
+            params[k] = v
+        url_ext += ('&%s=%s' % (k, v))
+    if method ==_HTTP_UPLOAD:
+        uploadPa+=" -F token="+params['token']
+        cmd="curl"+uploadPa+" \""+http_url+"\""
+        return _get_json_request(os.popen(cmd).read()) 
+#        print body  
+    else:
+        params = (method == _HTTP_GET) and None or params
+        req = (method == _HTTP_GET) and urllib2.Request(http_url) or urllib2.Request(http_url, urllib.urlencode(params))
+        resp = urllib2.urlopen(req)
+        body = resp.read()
+    return _get_json_request(body)
 
 
 class APIError(StandardError):
@@ -124,6 +132,7 @@ class VDiskAPIClient(object):
         self.api_url = 'http://openapi.vdisk.me/'
         self.get = HttpObject(self, _HTTP_GET)
         self.post = HttpObject(self, _HTTP_POST)
+        self.upload=HttpObject(self,_HTTP_UPLOAD)
 
         #just hack code for get_token methord ...
         self.post.auth__get_token = self.__auth__get_token
@@ -148,7 +157,9 @@ class VDiskAPIClient(object):
             'signature' : _get_signature(self._user, self._appkey, self._password, self._app_secret, str_time)}
 
         req = urllib2.Request(self.api_url + '?m=auth&a=get_token', urllib.urlencode(values))
-        json_token_res = _get_json_request(req)
+        resp = urllib2.urlopen(req)
+        body = resp.read()
+        json_token_res = _get_json_request(body)
         self.access_token = json_token_res['data']['token']
         return json_token_res
 
@@ -160,7 +171,9 @@ class VDiskAPIClient(object):
         values = {'token' : self.access_token}
 
         req = urllib2.Request(self.api_url + '?a=keep', urllib.urlencode(values))
-        return _get_json_request(req)
+        resp = urllib2.urlopen(req)
+        body = resp.read()
+        return _get_json_request(body)
 
 
 if __name__ == '__main__':
