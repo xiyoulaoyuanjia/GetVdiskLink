@@ -1,0 +1,5 @@
+#!/bin/bash
+
+/home/yuanjia/Desktop/GetVdiskLink/GetLink.py  $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS
+
+#echo ""$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS"" >> /tmp/temp.txt
