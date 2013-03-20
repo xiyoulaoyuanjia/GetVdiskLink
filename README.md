@@ -35,8 +35,7 @@ _[新浪微盘python 封装API](https://github.com/xiyoulaoyuanjia/VdiskSDK)_
 
 >>* 成功弹出下图
 
-![](http://image.data.vdisk.me/55890007/0fa27787a3fa2193a4384e968768c20b6e7bf5a8?ip=1363779418,114.255.40.42&ssig=RFdojyfeYG&Expires=1363778218&KID=sae,l30zoo1wmz&fn=OSRegex.png)
-
+![](http://image.data.vdisk.me/55890007/9e67ae2712c3968cf413b11e507a0261b56e7e54?ip=1363779589,114.255.40.42&ssig=%2F8KoikIyvj&Expires=1363778389&KID=sae,l30zoo1wmz&fn=GetVdiskLink_ok.png)
 >>*  失败弹出下图
 
 ![](http://image.data.vdisk.me/55890007/66aecc4b90d85cbd18b12e030bd64d87f7cf6697?ip=1363779243,114.255.40.42&ssig=T7SirxrwAs&Expires=1363778043&KID=sae,l30zoo1wmz&fn=GetVdiskLink_error.png)
