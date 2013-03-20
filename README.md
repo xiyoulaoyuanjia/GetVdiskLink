@@ -31,7 +31,7 @@ _[新浪微盘python 封装API](https://github.com/xiyoulaoyuanjia/VdiskSDK)_
 >* 桌面环境下nautilus 下测试成功
 
 
-[](http://image.data.vdisk.me/55890007/7d68096ad7dc037634b25efea2c7fbd0844f43a4?ip=1363764985,114.255.40.42&ssig=coiIt2TpB2&Expires=1363763785&KID=sae,l30zoo1wmz&fn=demo.png)
+![](http://image.data.vdisk.me/55890007/7d68096ad7dc037634b25efea2c7fbd0844f43a4?ip=1363764985,114.255.40.42&ssig=coiIt2TpB2&Expires=1363763785&KID=sae,l30zoo1wmz&fn=demo.png)
 
 
 **todo**
