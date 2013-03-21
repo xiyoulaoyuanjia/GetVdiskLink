@@ -45,7 +45,6 @@ _[新浪微盘python 封装API](https://github.com/xiyoulaoyuanjia/VdiskSDK)_
 >* 支持 web下上传获得链接方式
 >* 桌面环境下支持 fedora 17 右键发送
 >* 密码安全? 修改每次上传都要隐藏密码的问题
->* 验证传入类型验证
 >* 写一个安装脚本
 >* 增加传入正确删除图皮的功能
 
