@@ -54,8 +54,13 @@ try :
     uid=client.upload.file__upload_file(dir_id=dir_id,file=filename,cover='yes')['data']['fid']	
 
 ## 这里只能获得图片的下载地址?
-    s3_url=client.post.file__get_file_info(fid=uid)['data']['s3_url']
-    GetSrcToClipboard="echo \"" + s3_url+"\" |" " xclip -selection CLIPBOARD"
+#    print client.post.file__get_file_info(fid=uid)['data']
+#    s3_url=client.post.file__get_file_info(fid=uid)['data']['s3_url']
+    url=client.post.file__get_file_info(fid=uid)['data']['url']
+    shareUrl="http://vdisk.weibo.com/share/embedImage?file="+url.split("/")[-1]
+# urlparse.urlparse("http://vdisk.weibo.com/s/unRPX").path.split('/',)
+    GetSrcToClipboard="echo \"" + shareUrl+"\" |" " xclip -selection CLIPBOARD"
+
 
 #print GetSrcToClipboard
 ###########
