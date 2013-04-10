@@ -18,6 +18,11 @@ _[新浪微盘python 封装API](https://github.com/xiyoulaoyuanjia/VdiskSDK)_
 
 **如何使用?**
 
+>* client = VDiskAPIClient(decrypt(user), decrypt(passwd)) 
+
+decrypt(user) decrypt(passwd) 更改为自己新浪微博的用户名与密码    
+
+
 >* 命令行下使用
 
 
