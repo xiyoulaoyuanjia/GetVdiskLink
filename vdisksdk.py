@@ -178,7 +178,7 @@ class VDiskAPIClient(object):
 
 
 if __name__ == '__main__':
-    client = VDiskAPIClient('xiyoulaoyuanjia@gmail.com', 'yuanjia')
+    client = VDiskAPIClient('', '')
 
     print    client.post.auth__get_token()
 
