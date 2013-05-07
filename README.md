@@ -36,22 +36,21 @@ decrypt(user) decrypt(passwd) 更改为自己新浪微博的用户名与密码
 >* 桌面环境下nautilus 下测试成功
 
 
-![](http://image.data.vdisk.me/55890007/7d68096ad7dc037634b25efea2c7fbd0844f43a4?ip=1363764985,114.255.40.42&ssig=coiIt2TpB2&Expires=1363763785&KID=sae,l30zoo1wmz&fn=demo.png)
+![](http://openapi.vdisk.me/?m=file&a=download_share_file&ss=f457XZ1lUiUPNvsw9wn0TaI97RU7lAaGjvEyLWmXRq05n--2FWlz2JQCOBn7QliJ2bdkwr51REF--2FMa5A4UQZstf6UO6LPCM)
 
 >>* 成功弹出下图
 
-![](http://image.data.vdisk.me/55890007/9e67ae2712c3968cf413b11e507a0261b56e7e54?ip=1363779589,114.255.40.42&ssig=%2F8KoikIyvj&Expires=1363778389&KID=sae,l30zoo1wmz&fn=GetVdiskLink_ok.png)
+![](http://openapi.vdisk.me/?m=file&a=download_share_file&ss=2368kEgo7mhGSyJIP2LSTqYnjgtGjPfSqAMIM16HqsvQ4LzbhH9r7H94aBnIh3cDtn--2Fa5U9tsWC7VWrF)
 >>*  失败弹出下图
 
-![](http://image.data.vdisk.me/55890007/66aecc4b90d85cbd18b12e030bd64d87f7cf6697?ip=1363779243,114.255.40.42&ssig=T7SirxrwAs&Expires=1363778043&KID=sae,l30zoo1wmz&fn=GetVdiskLink_error.png)
+![](http://openapi.vdisk.me/?m=file&a=download_share_file&ss=c8abn--2Bm7LYab4OeNM--2FFhiy0VokcP7jx0IHgDllvq--2FYTecbPkf6Yho--2BNHxFruu07l--2F8slNRka9S4yxNNZX2pn1Q9j--2FOkp)
 
 **todo**
 
 >* 支持 web下上传获得链接方式
 >* 桌面环境下支持 fedora 17 右键发送
->* 密码安全? 修改每次上传都要隐藏密码的问题
 >* 写一个安装脚本
->* 增加传入正确删除图皮的功能
+>* 增加传入正确删除图片的功能
 
 
 
