@@ -7,21 +7,28 @@ set -e
 
 if [ "a$NAUTILUS_SCRIPT_CURRENT_URI" = "a" ] ; then
 ## 供测试使用
-	name="lianxi2.png"
+	name="Screenshot from 2013-05-07 21:23:35.png"
 	url="test"	
+	name=$(echo ${name} | sed 's/ /\ /g')
+	echo $name
 else
 
 	url=`echo "$NAUTILUS_SCRIPT_CURRENT_URI" | awk -F '//' '{print $NF}'`
 	#echo $url > /tmp/temp.txt
 	name=`echo "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS"|awk -F '/' '{print $NF}' `
+	# escape black
+	name=$(echo ${name} | sed 's/ /\ /g')
 fi
 	cd $url
 #name=`echo "/home/yuanjia/Desktop/Screenshot_from_2013-05-07_16:04:43.png"|awk -F '/' '{print $NF}'`
 #echo $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS
 
 #name="/home/yuanjia/Desktop/Screenshot_from_2013-05-07_16:04:43.png"
+#echo ${name}
 
-swift -A https://auth.sinas3.com/v1.0  -U 23o43wyk0j -K mik202mk0l21xxy3zkiiw450l13yhwl523y22l2i  upload yuanjiapicture $name
+dir="send_to_SaePic"
+
+swift -A https://auth.sinas3.com/v1.0  -U 23o43wyk0j -K mik202mk0l21xxy3zkiiw450l13yhwl523y22l2i  upload yuanjiapicture "$name"
 
 baseUrl="http://laoyuanjia-yuanjiapicture.stor.sinaapp.com"
 

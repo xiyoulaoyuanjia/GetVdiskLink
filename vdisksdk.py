@@ -68,12 +68,13 @@ def _http_call(client, url, method, authorization, **kw):
     http_url = (method == _HTTP_GET) and ('%s%s' %(url ,url_ext)) or ('%s' % (url))
     for k, v in kw.iteritems():
         if method == _HTTP_UPLOAD and k == 'file':
-		    uploadPa+=" -F "+k+"=@\""+str(v)+"\""
+            uploadPa+=" -F "+k+"=@\""+str(v)+"\""
         elif method==_HTTP_UPLOAD:
 		    uploadPa+=" -F "+k+"="+str(v)
         else:
             params[k] = v
-        url_ext += ('&%s=%s' % (k, v))
+        print k,v
+        url_ext += ('&%s=%s' % (k,v))
     if method ==_HTTP_UPLOAD:
         uploadPa+=" -F token="+params['token']
         cmd="curl"+uploadPa+" \""+http_url+"\""
@@ -123,6 +124,9 @@ class VDiskAPIClient(object):
     vdisk api wrapper
     '''
     def __init__(self, account, password):
+        import sys
+        reload(sys)
+        sys.setdefaultencoding('utf8')
         self._user = account
         self._password = password
         self._appkey = '2716459810'
@@ -147,9 +151,11 @@ class VDiskAPIClient(object):
             str = 'account=' + account + '&appkey=' + appkey + '&password=' + password + '&time=' + str_time
             h = hmac.new(app_secret, str, hashlib.sha256)
             s = h.hexdigest()
+#            print s
             return s
 
-        str_time = str(int(time.time()))
+#        str_time = str(int(time.time()))
+        str_time = str(1)
         values = {'account' : self._user,
             'password' : self._password,
             'time' : str_time,
@@ -158,6 +164,7 @@ class VDiskAPIClient(object):
             'signature' : _get_signature(self._user, self._appkey, self._password, self._app_secret, str_time)}
 
         req = urllib2.Request(self.api_url + '?m=auth&a=get_token', urllib.urlencode(values))
+#        print values
         resp = urllib2.urlopen(req)
         body = resp.read()
         json_token_res = _get_json_request(body)
@@ -178,9 +185,14 @@ class VDiskAPIClient(object):
 
 
 if __name__ == '__main__':
-    client = VDiskAPIClient('xiyoulaoyuanjia@gmail.com', 'yuanjia')
-
-    print    client.post.auth__get_token()
+#	import sys
+#	reload(sys)
+#	sys.setdefaultencoding('utf8')
+	client = VDiskAPIClient('xiyoulaoyuanjia@gmail.com', 'yuanjia')
+	client.post.auth__get_token()
+	dir_id=client.post.dir__get_dirid_with_path(path = '/GetLink')['data']['id']
+#	download_page=client.upload.file__upload_share_file(dir_id=dir_id,file="/home/yuanjia/Desktop/OSRegex.png",cover='yes')['data']['download_page']
+	download_page=client.upload.file__upload_share_file(dir_id=dir_id,file="/home/yuanjia/Desktop/1.gif",cover='yes')['data']['download_page']
 
 #    print client.post.dir__get_dirid_with_path(path = '/')
 #    print client.post.dir__getlist(dir_id = 0)
